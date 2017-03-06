@@ -7,7 +7,7 @@ from django.contrib.auth.backends import ModelBackend
 from .models import UserProfile
 from django.db.models import Q
 from django.views.generic.base import View
-from .froms import LoginForm
+from .froms import LoginForm, RegisterForm
 
 
 # 重写用户认证
@@ -21,6 +21,7 @@ class CustomBackend(ModelBackend):
             return None
 
 
+# 用户登陆
 class LoginView(View):
     def get(self, request):
         return render(request, 'login.html', {})
@@ -40,6 +41,10 @@ class LoginView(View):
             return render(request, 'login.html', {"login_form": login_form})
 
 
-# class LogoutView(View):
-    # logout(request)
+class RegisterView(View):
+    def get(self, request):
+        register_from = RegisterForm()
+        return render(request, 'register.html', {'register_from': register_from})
 
+# class LogoutView(View):
+# logout(request)
