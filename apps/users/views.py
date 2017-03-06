@@ -46,5 +46,11 @@ class RegisterView(View):
         register_from = RegisterForm()
         return render(request, 'register.html', {'register_from': register_from})
 
+    def post(self, request):
+        register_from = RegisterForm()
+        if register_from.is_valid():
+            pass
+
+
 # class LogoutView(View):
 # logout(request)
